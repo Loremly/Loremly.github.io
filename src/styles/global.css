@@ -27,6 +27,9 @@ html .clashdisplay-bold {
   font-family: "ClashDisplay-Variable", sans-serif;
   font-weight: 700;
 }
+html body {
+  background: #88b0b6;
+}
 html body .menu ul li > a {
   letter-spacing: 1px;
 }
