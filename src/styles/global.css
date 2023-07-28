@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=WindSong&display=swap");
+@import url("/public/fonts/fonts.css");
+html {
+  -webkit-font-smoothing: antialiased;
+  --gradient-color-1: #88b0b6;
+  --gradient-color-4: #184561;
+  --gradient-color-3: #0a2c3c;
+  --gradient-color-2: #88aeb6;
+}
+html .clashdisplay-light {
+  font-family: "ClashDisplay-Variable", sans-serif;
+  font-weight: 300;
+}
+html .clashdisplay-regular {
+  font-family: "ClashDisplay-Variable", sans-serif;
+  font-weight: 400;
+}
+html .clashdisplay-medium {
+  font-family: "ClashDisplay-Variable", sans-serif;
+  font-weight: 500;
+}
+html .clashdisplay-semibold {
+  font-family: "ClashDisplay-Variable", sans-serif;
+  font-weight: 600;
+}
+html .clashdisplay-bold {
+  font-family: "ClashDisplay-Variable", sans-serif;
+  font-weight: 700;
+}
+html body .menu ul li > a {
+  letter-spacing: 1px;
+}
+html body .logotype {
+  font-family: "Windsong", sans-serif;
+}
+html .opacityelement {
+  @apply opacity-0;
+}
+html ::selection {
+  background-color: unset;
+  color: unset;
+}/*# sourceMappingURL=global.css.map */

@@ -1,0 +1,25 @@
+---
+import Footer from '~/components/Footer.astro'
+import Menu from '~/components/Menu.astro'
+import Layouts from '~/layouts/layouts.astro'
+
+import { Icon } from 'astro-icon'
+---
+
+<Layouts page="Page Not Found">
+    <section class="flex h-screen flex-col">
+        <Menu />
+        <div class="flex flex-1 flex-row">
+            <div class="flex flex-1 flex-col items-center justify-center">
+                <span class="logotype text-7xl">404</span>
+                <a
+                    class="clashdisplay-medium flex flex-row items-center capitalize transition-all text-base hover:opacity-30"
+                    href="/">
+                    <Icon name="ph:arrow-left" class="mr-2 h-8" />
+                    <span>go back</span>
+                </a>
+            </div>
+        </div>
+        <Footer />
+    </section>
+</Layouts>

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=WindSong&display=swap');
+@import url('/public/fonts/fonts.css');
+
+$weights: (
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700,
+);
+
+html {
+    -webkit-font-smoothing: antialiased;
+    --gradient-color-1: #88b0b6;
+    --gradient-color-4: #184561;
+    --gradient-color-3: #0a2c3c;
+    --gradient-color-2: #88aeb6;
+    @each $x, $num in $weights {
+        .clashdisplay-#{$x} {
+            font-family: 'ClashDisplay-Variable', sans-serif;
+            font-weight: #{$num};
+        }
+    }
+    body {
+        .menu {
+            ul {
+                li > a {
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        .logotype {
+            font-family: 'Windsong', sans-serif;
+        }
+    }
+    .opacityelement {
+        @apply opacity-0;
+    }
+    ::selection {
+        background-color: unset;
+        color: unset;
+    }
+    
+}

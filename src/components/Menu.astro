@@ -1,0 +1,192 @@
+---
+import type { Hyperlink } from '~/types'
+
+const menulinks: Array<Hyperlink> = [
+    {
+        name: 'Home',
+        url: '/',
+        target: '_self',
+    },
+    {
+        name: 'projects',
+        url: '/projects',
+        target: '_self',
+    },
+    {
+        name: 'contact',
+        url: '/contact',
+        target: '_self',
+    },
+    {
+        name: 'github',
+        url: 'https://github.com/loremly',
+        target: '_blank',
+    },
+]
+---
+
+<div class="flex items-start justify-between">
+    <div class="menubtn flex cursor-pointer flex-col gap-2 p-2">
+        <div id="line_1" class="h-[1.5px] w-8 bg-white"></div>
+        <div id="line_2" class="h-[1.5px] w-8 bg-white"></div>
+    </div>
+    <div
+        class="clashdisplay-regular flex flex-col gap-1 text-right capitalize text-base">
+        <span>unfinished</span>
+        <span>Version 1.0</span>
+    </div>
+</div>
+<div class="menu fixed z-10 mt-14">
+    <ul class="left-0 flex w-full flex-col">
+        {
+            menulinks.map((menulinks) => (
+                <li class="clashdisplay-regular menulink mb-3 flex w-min select-none flex-row capitalize opacity-0 transition-colors text-3xl hover:text-gray-600">
+                    <a
+                        href={menulinks.url}
+                        rel="noopener"
+                        class="p-2"
+                        target={menulinks.target}>
+                        {menulinks.name}
+                    </a>
+                    <svg
+                        class="link-arrow w-5 fill-current"
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" />
+                    </svg>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<script>
+    import { gsap } from 'gsap'
+
+    // Get the elements
+    const menubutton = document.querySelector('.menubtn')
+    const opacityelement = document.getElementsByClassName('opacityelement')
+    const menulink = document.getElementsByClassName('menulink')
+    const gradient = document.querySelector('#gradient-canvas')
+    const line_1 = document.querySelector('#line_1')
+    const line_2 = document.querySelector('#line_2')
+
+    // Set the initial state
+    let isToggled = false
+    let isAnimating = false
+
+    // Function to handle the click event
+    function handleClick() {
+        if (!isAnimating) {
+            isAnimating = true
+            menubutton?.setAttribute('disabled', 'true')
+
+            if (!isToggled) {
+                // Animate the elements using GSAP
+                gsap.to(opacityelement, {
+                    ease: 'expo.out',
+                    opacity: 0,
+                    duration: 1,
+                })
+                gsap.to(menulink, {
+                    opacity: 1,
+                    userSelect: 'all',
+                    duration: 1.5,
+                    delay: 0.8,
+                    x: 0,
+                    ease: 'expo.out',
+                    stagger: {
+                        grid: 'auto',
+                        from: 'start',
+                        axis: 'y',
+                        ease: 'linear',
+                        each: 0.2,
+                        amount: 0.3,
+                        onComplete: () => {
+                            isAnimating = false
+                            menubutton?.removeAttribute('disabled') // Set animation status to false when animations are completed
+                        },
+                    },
+                })
+                gsap.to(line_1, {
+                    ease: 'expo.out',
+                    rotation: 45,
+                    y: 4.5,
+                })
+                gsap.to(line_2, {
+                    ease: 'expo.out',
+                    rotation: -45,
+                    y: -4.5,
+                })
+                gsap.to(gradient, {
+                    ease: 'expo.out',
+                    scaleX: 2,
+                    duration: 1,
+                    delay: 0.7,
+                })
+                isToggled = true
+            } else {
+                // Animate the elements back to the initial state
+                gsap.to(menulink, {
+                    opacity: 0,
+                    duration: 1.2,
+                    delay: 0.09,
+                    x: -350,
+                    ease: 'expo.out',
+                    stagger: {
+                        grid: 'auto',
+                        from: 'end',
+                        axis: 'y',
+                        ease: 'linear',
+                        each: 0.2,
+                        amount: 0.3,
+                    },
+                    onComplete: function () {
+                        gsap.to(opacityelement, {
+                            opacity: 1,
+                            duration: 1,
+                            delay: 0,
+                        })
+                        isAnimating = false
+                        menubutton?.removeAttribute('disabled')
+                    },
+                })
+                gsap.to(gradient, {
+                    ease: 'expo.out',
+                    scaleX: 1,
+                    duration: 1,
+                })
+                gsap.to(line_1, {
+                    ease: 'expo.out',
+                    rotation: 0,
+                    y: 0,
+                })
+                gsap.to(line_2, {
+                    ease: 'expo.out',
+                    rotation: 0,
+                    y: 0,
+                })
+
+                isToggled = false
+            }
+        }
+    }
+
+    if (!isToggled) {
+        gsap.to(opacityelement, {
+            opacity: 1,
+            duration: 0,
+        })
+        gsap.to(menulink, {
+            userSelect: 'none',
+            x: -350,
+        })
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 27 && isToggled) {
+            handleClick() // Toggle off the menu
+        }
+    })
+    menubutton?.addEventListener('click', handleClick)
+</script>

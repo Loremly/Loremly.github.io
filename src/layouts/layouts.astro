@@ -1,0 +1,72 @@
+---
+import Gradient from '~/components/Gradient.astro'
+import '~/styles/global.css'
+export interface Props {
+    page: string
+    description?: string
+}
+
+const { page, description } = Astro.props as Props
+
+const fallbackDescription: string = 'fallback.'
+const title = 'Lorem'
+---
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/x-icon" href="/public/favicon.svg" />
+        <title>{title} // {page}</title>
+        <meta name="description" content={description || fallbackDescription} />
+
+        <meta name="theme-color" content="#fff" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Stylessh - Web Developer" />
+        <meta
+            name="twitter:description"
+            content={description || fallbackDescription}
+        />
+        <meta name="twitter:image:src" content="/assets/og-image.png" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://stylessh-v2.vercel.app" />
+        <meta property="og:site_name" content="Stylessh" />
+        <meta property="og:title" content=`${title} // ${page}` />
+        <meta
+            property="og:description"
+            content={description || fallbackDescription}
+        />
+        <meta property="og:image" content="/assets/og-image.png" />
+        <meta property="og:type" content="object" />
+    </head>
+    <body
+        class="flex h-screen w-screen cursor-default flex-col items-center justify-center bg-[#88aeb6] px-16 py-8 text-white">
+        <Gradient client:load />
+        <div
+            class="container flex h-full flex-col justify-between opacity-0 mix-blend-overlay">
+            <slot />
+        </div>
+    </body>
+</html>
+
+<script>
+    import { gsap } from 'gsap'
+
+    function animateContent() {
+        const container = document.querySelector('.container')
+        const duration = 3 
+
+        gsap.to(container, {
+            opacity: 1,
+            duration,
+            delay: 3,
+            ease: 'Expo.easeOut',
+        })
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        animateContent()
+    })
+</script>
