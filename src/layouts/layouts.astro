@@ -1,5 +1,7 @@
 ---
 import Gradient from '~/components/Gradient.astro'
+import Footer from '~/components/Footer.astro'
+import Menu from '~/components/Menu.astro'
 import '~/styles/global.css'
 export interface Props {
     page: string
@@ -8,7 +10,7 @@ export interface Props {
 
 const { page, description } = Astro.props as Props
 
-const fallbackDescription: string = 'fallback.'
+const fallbackDescription: string = '// Welcome To My Website //'
 const title = 'Lorem'
 ---
 
@@ -17,7 +19,7 @@ const title = 'Lorem'
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/x-icon" href="/public/favicon.svg" />
+        <link rel="icon" type="image/x-svg" href="/favicon.svg" />
         <title>{title} // {page}</title>
         <meta name="description" content={description || fallbackDescription} />
 
@@ -41,32 +43,22 @@ const title = 'Lorem'
             content={description || fallbackDescription}
         />
         <meta property="og:type" content="object" />
+
+        <script src="../animation/barba.js" />
+        <script src="../animation/menu.js" />
+        <script src="../animation/opacityElement.js" />
+        <script src="../animation/arrow.js" />
+        <script src="../lib/lenis.js" />
     </head>
-    <body
-        class="flex h-screen w-screen cursor-default flex-col items-center justify-center px-16 py-8 text-white">
+    
+    <body data-barba="wrapper"
+        class="text-white p-8 fixed h-screen w-full bottom-0 overflow-hidden flex flex-col">
         <Gradient />
-        <div
-            class="container flex h-full flex-col justify-between opacity-0 mix-blend-overlay">
+        <Menu />
+        <div data-barba="container" data-barba-namespace="container"
+            class="content-container opacityelement flex flex-1 h-full overflow-y-scroll flex-col max-w-none w-full justify-between mix-blend-overlay pb-9 pr-2">
             <slot />
         </div>
+        <Footer />
     </body>
 </html>
-
-<script>
-    import { gsap } from 'gsap'
-
-    function animateContent() {
-        const container = document.querySelector('.container')
-        const duration = 3 
-
-        gsap.to(container, {
-            opacity: 1,
-            duration,
-            delay: 3,
-            ease: 'Expo.easeOut',
-        })
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-        animateContent()
-    })
-</script>

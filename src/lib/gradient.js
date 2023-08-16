@@ -22,10 +22,11 @@ class MiniGl {
         const _miniGl = this,
             debug_output =
                 -1 !==
-                document.location.search.toLowerCase().indexOf('debug=webgl')
+                document.location.search.toLowerCase().indexOf('debug=webgl2')
         ;(_miniGl.canvas = canvas),
-            (_miniGl.gl = _miniGl.canvas.getContext('webgl', {
+            (_miniGl.gl = _miniGl.canvas.getContext('webgl2', {
                 antialias: true,
+                alpha: false
             })),
             (_miniGl.meshes = [])
         const context = _miniGl.gl

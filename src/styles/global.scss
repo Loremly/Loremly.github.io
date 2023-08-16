@@ -2,44 +2,121 @@
 @import url('/public/fonts/fonts.css');
 
 $weights: (
-    'light': 300,
-    'regular': 400,
-    'medium': 500,
-    'semibold': 600,
-    'bold': 700,
+    'clashdisplay': (
+        'light': 300,
+        'regular': 400,
+        'medium': 500,
+        'semibold': 600,
+        'bold': 700,
+    ),
+    'satoshi': (
+        'light': 300,
+        'regular': 400,
+        'medium': 500,
+        'semibold': 600,
+        'bold': 700,
+    ),
 );
-
+* {
+    line-height: 1;
+}
 html {
-    -webkit-font-smoothing: antialiased;
     --gradient-color-1: #88b0b6;
     --gradient-color-4: #184561;
     --gradient-color-3: #0a2c3c;
     --gradient-color-2: #88aeb6;
-    @each $x, $num in $weights {
-        .clashdisplay-#{$x} {
-            font-family: 'ClashDisplay-Variable', sans-serif;
-            font-weight: #{$num};
+
+    @each $font, $weight in $weights {
+        @each $num, $x in $weight {
+            .#{$font}-#{$num} {
+                font-family: '#{$font}-Variable', sans-serif;
+                font-weight: #{$x};
+            }
         }
     }
+
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: initial;
+    height: auto;
+
+    ::selection {
+        background: var(--gradient-color-1);
+        color: var(--gradient-color-4);
+    }
+    ::-webkit-scrollbar {
+        width: 6px;
+        &-track {
+            margin: 10px 0;
+            background: transparent;
+        }
+        &-thumb {
+            border-radius: 10px;
+            background: white;
+        }
+    }
+    .hoverelement {
+        &:hover {
+            @apply cursor-pointer text-gray-500 transition-colors duration-200;
+        }
+    }
+    a{
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     body {
         background: #88b0b6;
+        .menuheader {
+            .menu-container {
+                width: calc(100% - 4rem);
+                height: 1px;
+            }
+            [id^='line'] {
+                background-color: white;
+                display: block;
+                height: 1.5px;
+                @apply w-8;
+            }
+        }
         .menu {
             ul {
-                li > a {
-                    letter-spacing: 1px;
+                li {
+                    a {
+                        letter-spacing: 1px;
+                    }
+                }
+                .menuitem {
+                    text-decoration: unset;
+                    @apply w-96;
+                    *{
+                        text-decoration: unset;
+                    }
                 }
             }
         }
         .logotype {
             font-family: 'Windsong', sans-serif;
         }
+        .content-container {
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent 1%,
+                black 9%,
+                black 89%,
+                transparent 99%
+            );
+            ol {
+                li {
+                    margin-bottom: 0.65rem;
+                    a {
+                        font-weight: 400;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
     }
-    .opacityelement {
-        @apply opacity-0;
-    }
-    ::selection {
-        background-color: unset;
-        color: unset;
-    }
-    
 }

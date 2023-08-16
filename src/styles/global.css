@@ -1,45 +1,114 @@
 @import url("https://fonts.googleapis.com/css2?family=WindSong&display=swap");
 @import url("/public/fonts/fonts.css");
+* {
+  line-height: 1;
+}
+
 html {
-  -webkit-font-smoothing: antialiased;
   --gradient-color-1: #88b0b6;
   --gradient-color-4: #184561;
   --gradient-color-3: #0a2c3c;
   --gradient-color-2: #88aeb6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: initial;
+  height: auto;
 }
 html .clashdisplay-light {
-  font-family: "ClashDisplay-Variable", sans-serif;
+  font-family: "clashdisplay-Variable", sans-serif;
   font-weight: 300;
 }
 html .clashdisplay-regular {
-  font-family: "ClashDisplay-Variable", sans-serif;
+  font-family: "clashdisplay-Variable", sans-serif;
   font-weight: 400;
 }
 html .clashdisplay-medium {
-  font-family: "ClashDisplay-Variable", sans-serif;
+  font-family: "clashdisplay-Variable", sans-serif;
   font-weight: 500;
 }
 html .clashdisplay-semibold {
-  font-family: "ClashDisplay-Variable", sans-serif;
+  font-family: "clashdisplay-Variable", sans-serif;
   font-weight: 600;
 }
 html .clashdisplay-bold {
-  font-family: "ClashDisplay-Variable", sans-serif;
+  font-family: "clashdisplay-Variable", sans-serif;
   font-weight: 700;
+}
+html .satoshi-light {
+  font-family: "satoshi-Variable", sans-serif;
+  font-weight: 300;
+}
+html .satoshi-regular {
+  font-family: "satoshi-Variable", sans-serif;
+  font-weight: 400;
+}
+html .satoshi-medium {
+  font-family: "satoshi-Variable", sans-serif;
+  font-weight: 500;
+}
+html .satoshi-semibold {
+  font-family: "satoshi-Variable", sans-serif;
+  font-weight: 600;
+}
+html .satoshi-bold {
+  font-family: "satoshi-Variable", sans-serif;
+  font-weight: 700;
+}
+html ::selection {
+  background: var(--gradient-color-1);
+  color: var(--gradient-color-4);
+}
+html ::-webkit-scrollbar {
+  width: 6px;
+}
+html ::-webkit-scrollbar-track {
+  margin: 10px 0;
+  background: transparent;
+}
+html ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: white;
+}
+html .hoverelement:hover {
+  @apply cursor-pointer text-gray-500 transition-colors duration-200;
+}
+html a:hover {
+  text-decoration: underline;
 }
 html body {
   background: #88b0b6;
 }
-html body .menu ul li > a {
+html body .menuheader .menu-container {
+  width: calc(100% - 4rem);
+  height: 1px;
+}
+html body .menuheader [id^=line] {
+  background-color: white;
+  display: block;
+  height: 1.5px;
+  @apply w-8;
+}
+html body .menu ul li a {
   letter-spacing: 1px;
+}
+html body .menu ul .menuitem {
+  text-decoration: unset;
+  @apply w-96;
+}
+html body .menu ul .menuitem * {
+  text-decoration: unset;
 }
 html body .logotype {
   font-family: "Windsong", sans-serif;
 }
-html .opacityelement {
-  @apply opacity-0;
+html body .content-container {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 1%, black 9%, black 89%, transparent 99%);
 }
-html ::selection {
-  background-color: unset;
-  color: unset;
+html body .content-container ol li {
+  margin-bottom: 0.65rem;
+}
+html body .content-container ol li a {
+  font-weight: 400;
+}
+html body .content-container ol li a:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=global.css.map */
